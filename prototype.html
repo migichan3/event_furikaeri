@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>54時間の行動記録 | Startup Weekend 2024</title>
+
+  <!-- Google Fonts: Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* === リセット・基本設定 === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* 色彩 */
+      --text-primary: #1a1a1a;
+      --text-secondary: #666666;
+      --text-tertiary: #999999;
+      --bg-page: #fafaf8;
+      --bg-card: #ffffff;
+      --border-light: #e5e5e5;
+      --main-color: #1e3a5f;
+      --accent-color: #8b4049;
+      --accent-light: #e8dfe0;
+      --valley-highlight: rgba(139, 64, 73, 0.08);
+
+      /* タイポグラフィ */
+      --font-family: "Noto Sans JP", sans-serif;
+      --font-size-body: 16px;
+      --font-size-small: 14px;
+      --font-size-h1: 24px;
+      --font-size-h2: 20px;
+      --font-size-h3: 18px;
+      --line-height-body: 1.7;
+      --line-height-heading: 1.3;
+
+      /* 間隔 */
+      --spacing-xs: 8px;
+      --spacing-sm: 12px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 32px;
+      --spacing-xxl: 48px;
+
+      /* その他 */
+      --radius: 6px;
+      --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    body {
+      font-family: var(--font-family);
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      color: var(--text-primary);
+      background: var(--bg-page);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === ページレイアウト === */
+    .page {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: var(--spacing-xl);
+      background: var(--bg-card);
+    }
+
+    .page-a {
+      page-break-after: always;
+    }
+
+    .page-b {
+      margin-top: var(--spacing-xxl);
+    }
+
+    /* === ヘッダー === */
+    .header {
+      margin-bottom: var(--spacing-xl);
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 2px solid var(--main-color);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .header-main h1 {
+      font-size: var(--font-size-h1);
+      font-weight: 700;
+      line-height: var(--line-height-heading);
+      color: var(--main-color);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .header-meta {
+      text-align: right;
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .header-info {
+      display: flex;
+      gap: var(--spacing-lg);
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+    }
+
+    .header-info div {
+      display: flex;
+      gap: var(--spacing-xs);
+    }
+
+    .header-info strong {
+      color: var(--text-primary);
+    }
+
+    /* === セクション共通 === */
+    section {
+      margin-bottom: var(--spacing-xl);
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: var(--font-size-h2);
+      font-weight: 700;
+      color: var(--main-color);
+      margin-bottom: var(--spacing-md);
+      line-height: var(--line-height-heading);
+    }
+
+    .section-subtitle {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* === グラフエリア === */
+    .graph-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .graph-svg {
+      width: 100%;
+      height: 280px;
+    }
+
+    .graph-note {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      margin-top: var(--spacing-sm);
+      padding: var(--spacing-sm);
+      background: var(--valley-highlight);
+      border-left: 3px solid var(--accent-color);
+      border-radius: var(--radius);
+    }
+
+    /* === STAR（4カラム） === */
+    .star-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .star-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: var(--spacing-md);
+    }
+
+    .star-item h3 {
+      font-size: var(--font-size-h3);
+      font-weight: 700;
+      color: var(--main-color);
+      margin-bottom: var(--spacing-sm);
+      line-height: var(--line-height-heading);
+    }
+
+    .star-item.action {
+      background: var(--accent-light);
+      border-color: var(--accent-color);
+    }
+
+    .star-item.action h3 {
+      color: var(--accent-color);
+    }
+
+    /* === 強み（3カラム） === */
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .strength-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: var(--spacing-md);
+    }
+
+    .strength-item h3 {
+      font-size: var(--font-size-h3);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+      line-height: var(--line-height-heading);
+    }
+
+    .strength-evidence {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-sm);
+      padding-left: var(--spacing-md);
+      border-left: 2px solid var(--accent-color);
+    }
+
+    .strength-evidence li {
+      margin-bottom: var(--spacing-xs);
+      list-style: none;
+      position: relative;
+    }
+
+    .strength-evidence li::before {
+      content: "•";
+      position: absolute;
+      left: -12px;
+      color: var(--accent-color);
+    }
+
+    .strength-application {
+      font-size: var(--font-size-small);
+      color: var(--text-primary);
+      padding: var(--spacing-sm);
+      background: var(--bg-page);
+      border-radius: 4px;
+    }
+
+    /* === 実数・引用 === */
+    .metrics-quotes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-lg);
+    }
+
+    .metrics h3,
+    .quotes h3 {
+      font-size: var(--font-size-h3);
+      font-weight: 700;
+      color: var(--main-color);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .metric-item {
+      margin-bottom: var(--spacing-md);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .metric-item:last-child {
+      border-bottom: none;
+    }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent-color);
+      line-height: 1.2;
+    }
+
+    .metric-label {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .quote-block {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent-color);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      border-radius: var(--radius);
+    }
+
+    .quote-text {
+      font-size: var(--font-size-body);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-xs);
+      line-height: 1.6;
+    }
+
+    .quote-author {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    /* === B面固有スタイル === */
+    .es-draft {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .es-draft h4 {
+      font-size: var(--font-size-h3);
+      font-weight: 700;
+      color: var(--main-color);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .char-count {
+      font-size: var(--font-size-small);
+      color: var(--text-tertiary);
+      text-align: right;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .es-text {
+      line-height: 1.8;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .es-note {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      padding: var(--spacing-sm);
+      background: var(--valley-highlight);
+      border-radius: 4px;
+    }
+
+    .oral-structure {
+      background: var(--bg-page);
+      padding: var(--spacing-md);
+      border-radius: var(--radius);
+      font-size: var(--font-size-small);
+    }
+
+    .oral-structure ol {
+      margin-left: var(--spacing-lg);
+    }
+
+    .oral-structure li {
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .mistakes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .mistakes-ng,
+    .mistakes-ok {
+      padding: var(--spacing-md);
+      border-radius: var(--radius);
+    }
+
+    .mistakes-ng {
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+    }
+
+    .mistakes-ok {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+    }
+
+    .mistakes-ng h4,
+    .mistakes-ok h4 {
+      font-size: var(--font-size-h3);
+      font-weight: 700;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .mistakes-ng h4 {
+      color: #dc2626;
+    }
+
+    .mistakes-ok h4 {
+      color: #16a34a;
+    }
+
+    .mistakes-ng ul,
+    .mistakes-ok ul {
+      list-style: none;
+      font-size: var(--font-size-small);
+    }
+
+    .mistakes-ng li,
+    .mistakes-ok li {
+      margin-bottom: var(--spacing-xs);
+      padding-left: var(--spacing-md);
+      position: relative;
+    }
+
+    .mistakes-ng li::before {
+      content: "✕";
+      position: absolute;
+      left: 0;
+      color: #dc2626;
+    }
+
+    .mistakes-ok li::before {
+      content: "○";
+      position: absolute;
+      left: 0;
+      color: #16a34a;
+    }
+
+    .questions-list {
+      counter-reset: question-counter;
+    }
+
+    .question-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      counter-increment: question-counter;
+    }
+
+    .question-text {
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .question-text::before {
+      content: "Q" counter(question-counter) ". ";
+      color: var(--accent-color);
+    }
+
+    .question-note {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      padding: var(--spacing-sm);
+      background: var(--bg-page);
+      border-radius: 4px;
+      margin-top: var(--spacing-xs);
+    }
+
+    .incomplete-list {
+      background: var(--valley-highlight);
+      border: 1px solid var(--accent-color);
+      border-radius: var(--radius);
+      padding: var(--spacing-lg);
+    }
+
+    .incomplete-list h4 {
+      font-size: var(--font-size-h3);
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .incomplete-list ul {
+      list-style: none;
+    }
+
+    .incomplete-list li {
+      margin-bottom: var(--spacing-sm);
+      padding-left: var(--spacing-lg);
+      position: relative;
+      font-size: var(--font-size-small);
+    }
+
+    .incomplete-list li::before {
+      content: "⚠";
+      position: absolute;
+      left: 0;
+      color: var(--accent-color);
+    }
+
+    /* === 印刷用CSS === */
+    @media print {
+      @page {
+        size: A4;
+        margin: 15mm;
+      }
+
+      body {
+        background: white;
+      }
+
+      .page {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        background: white;
+      }
+
+      .page-a {
+        page-break-after: always;
+      }
+
+      .page-b {
+        margin-top: 0;
+      }
+
+      section {
+        page-break-inside: avoid;
+      }
+
+      .no-print {
+        display: none;
+      }
+    }
+
+    @media screen {
+      body {
+        padding: var(--spacing-xl) 0;
+      }
+
+      .page-b {
+        margin-top: var(--spacing-xl);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== A面（企業に見せる面） ========== -->
+<div class="page page-a">
+
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-top">
+      <div class="header-main">
+        <h1>崩れた前提から、7時間で作り直した</h1>
+      </div>
+      <div class="header-meta">
+        <div>参加者120名中 2位</div>
+        <div>チーム5名</div>
+      </div>
+    </div>
+    <div class="header-info">
+      <div><strong>氏名：</strong>山田 太郎</div>
+      <div><strong>所属：</strong>東京大学 工学部 3年</div>
+      <div><strong>イベント：</strong>Startup Weekend Tokyo 2024.11（金19:00〜日17:00・54時間）</div>
+    </div>
+  </header>
+
+  <!-- グラフ（自信度の推移） -->
+  <section class="graph-section">
+    <h2 class="section-title">54時間の自信度推移</h2>
+    <div class="graph-container">
+      <svg class="graph-svg" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- グリッド線 -->
+        <line x1="60" y1="20" x2="60" y2="240" stroke="#e5e5e5" stroke-width="1"/>
+        <line x1="60" y1="240" x2="780" y2="240" stroke="#e5e5e5" stroke-width="1"/>
+
+        <!-- Y軸目盛り -->
+        <text x="40" y="25" font-size="12" fill="#666" text-anchor="end">10</text>
+        <text x="40" y="135" font-size="12" fill="#666" text-anchor="end">5</text>
+        <text x="40" y="245" font-size="12" fill="#666" text-anchor="end">0</text>
+
+        <!-- X軸ラベル -->
+        <text x="100" y="260" font-size="11" fill="#666" text-anchor="middle">金19:00</text>
+        <text x="250" y="260" font-size="11" fill="#666" text-anchor="middle">土06:00</text>
+        <text x="400" y="260" font-size="11" fill="#666" text-anchor="middle">土12:00</text>
+        <text x="550" y="260" font-size="11" fill="#666" text-anchor="middle">土18:00</text>
+        <text x="700" y="260" font-size="11" fill="#666" text-anchor="middle">日12:00</text>
+
+        <!-- 谷の強調帯（土10:00〜土17:00） -->
+        <rect x="350" y="20" width="180" height="220" fill="rgba(139, 64, 73, 0.08)" rx="4"/>
+
+        <!-- データ点の定義 -->
+        <!-- 金19:00 (x:100, 自信度7), 金23:00 (x:170, 6), 土03:00 (x:240, 5), 土06:00 (x:280, 4),
+             土10:00 (x:350, 2 谷), 土14:00 (x:440, 2), 土17:00 (x:530, 4),
+             土21:00 (x:600, 6), 日06:00 (x:670, 7), 日12:00 (x:710, 8), 日17:00 (x:760, 9) -->
+
+        <!-- 折れ線グラフ -->
+        <polyline
+          points="100,86 170,108 240,130 280,152 350,196 440,196 530,152 600,108 670,86 710,64 760,42"
+          fill="none"
+          stroke="#1e3a5f"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+
+        <!-- データポイント -->
+        <circle cx="100" cy="86" r="5" fill="#1e3a5f"/>
+        <circle cx="170" cy="108" r="5" fill="#1e3a5f"/>
+        <circle cx="240" cy="130" r="5" fill="#1e3a5f"/>
+        <circle cx="280" cy="152" r="5" fill="#1e3a5f"/>
+
+        <!-- 谷のポイント（強調） -->
+        <circle cx="350" cy="196" r="7" fill="#8b4049"/>
+        <circle cx="440" cy="196" r="7" fill="#8b4049"/>
+
+        <circle cx="530" cy="152" r="5" fill="#1e3a5f"/>
+        <circle cx="600" cy="108" r="5" fill="#1e3a5f"/>
+        <circle cx="670" cy="86" r="5" fill="#1e3a5f"/>
+        <circle cx="710" cy="64" r="5" fill="#1e3a5f"/>
+        <circle cx="760" cy="42" r="5" fill="#1e3a5f"/>
+
+        <!-- 谷の注釈 -->
+        <text x="440" y="15" font-size="13" fill="#8b4049" font-weight="700" text-anchor="middle">
+          発表19時間前、前提が崩れた
+        </text>
+      </svg>
+    </div>
+    <div class="graph-note">
+      <strong>自信度が最低だった時間帯（土10:00〜17:00）に、発言数・移動量が最大。</strong> 全員が黙った40分間の後、最初に声を出したのは本人。
+    </div>
+  </section>
+
+  <!-- STAR -->
+  <section class="star-section">
+    <div class="star-grid">
+      <div class="star-item">
+        <h3>状況</h3>
+        <p>ターゲット顧客への聞き取り結果、8名中7名が「使いたくない」と回答。発表19時間前の土曜10:40時点。金曜夜から作り始めた試作が全て没になる状況。</p>
+      </div>
+
+      <div class="star-item">
+        <h3>課題</h3>
+        <p>約40分間、全員の手が止まった。チーム5名のうち3名が「このまま出すしかない」と発言。残り時間から逆算すると、12時までに方針を決めないと完成しない。</p>
+      </div>
+
+      <div class="star-item action">
+        <h3>行動</h3>
+        <p>聞き取り結果を3つの理由に分解し、「必要性は認めているが、今の形では使いたくない」という構造を可視化。その上で「方針を変えるなら今」と発言し、1名ずつ意見を聞いて回った。</p>
+      </div>
+
+      <div class="star-item">
+        <h3>結果</h3>
+        <p>120名中2位。審査員コメント「顧客の声を最後まで捨てなかったチーム」。発表資料20枚のうち本人作成は8枚（残りはメンバー分担）。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 強み -->
+  <section class="strengths-section">
+    <h2 class="section-title">行動から見えた強み</h2>
+    <div class="strengths-grid">
+
+      <div class="strength-item">
+        <h3>不安な状態でも、最初の一手を打てる</h3>
+        <ul class="strength-evidence">
+          <li>自信度2（10段階）の状態で、40分の沈黙を破って最初に発言</li>
+          <li>方針転換の提案時、「正しいか分からないが、今決めないと間に合わない」と前置きした上で行動</li>
+        </ul>
+        <div class="strength-application">
+          不確実性の高い新規事業や、前例のない業務で、判断材料が不足していても初動を取れる可能性。
+        </div>
+      </div>
+
+      <div class="strength-item">
+        <h3>他者の意見を、構造に落とし込める</h3>
+        <ul class="strength-evidence">
+          <li>顧客8名の断片的な反応を「必要性○ / 今の形×」という軸で整理</li>
+          <li>チーム内の対立意見を「時間制約 vs 品質」の構造で可視化し、合意形成を早めた</li>
+        </ul>
+        <div class="strength-application">
+          会議や議論の場で、意見の対立点を整理して次の一手を導く役割を担える。
+        </div>
+      </div>
+
+      <div class="strength-item">
+        <h3>自分の案を降ろせる</h3>
+        <ul class="strength-evidence">
+          <li>金曜夜に提案した機能案を、土曜午後に自ら取り下げ。理由を「実装時間が足りない」と説明して合意を取った</li>
+          <li>最終発表の構成案を2回変更。いずれも他メンバーの指摘を受けて即座に修正</li>
+        </ul>
+        <div class="strength-application">
+          自分の意見に固執せず、状況に応じて判断を変えられる柔軟性。
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 実数・引用 -->
+  <section class="metrics-quotes-section">
+    <div class="metrics-quotes">
+
+      <div class="metrics">
+        <h3>実数</h3>
+
+        <div class="metric-item">
+          <div class="metric-value">8名</div>
+          <div class="metric-label">顧客への聞き取り人数（うち本人担当3名）</div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-value">7時間</div>
+          <div class="metric-label">方針転換（土12:00）から完成（土19:00）までの時間</div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-value">2回</div>
+          <div class="metric-label">方針転換の回数（うち本人起案1回、他メンバー起案1回）</div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-value">40%</div>
+          <div class="metric-label">最終発表資料20枚のうち本人作成の割合</div>
+        </div>
+
+      </div>
+
+      <div class="quotes">
+        <h3>引用</h3>
+
+        <div class="quote-block">
+          <p class="quote-text">「心臓はバクバクしていました。でも、ここで誰も喋らなかったら本当に終わると思って」</p>
+          <p class="quote-author">— 本人の言葉（土12:15、方針転換直後）</p>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">「あの人が最初に声を出してくれたから、僕も意見を言えた。あの40分は本当にきつかった」</p>
+          <p class="quote-author">— チームメンバーBさん（相互評価より）</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- ========== B面（本人用・提出しない） ========== -->
+<div class="page page-b">
+
+  <header class="header">
+    <h1>面接準備シート（提出しないでください）</h1>
+    <p class="section-subtitle">このページは本人が面接前に見返すためのものです。企業には提出しません。</p>
+  </header>
+
+  <!-- ESドラフト -->
+  <section class="es-section">
+    <h2 class="section-title">ESドラフト</h2>
+
+    <div class="es-draft">
+      <h4>400字版（ガクチカ想定）</h4>
+      <div class="char-count">391字</div>
+      <div class="es-text">
+        Startup Weekend（54時間の新規事業立案イベント）で、発表19時間前に前提が崩れる経験をしました。土曜10:40、ターゲット顧客8名中7名が「使いたくない」と回答。チーム5名全員が黙り込み、約40分間手が止まりました。この時、自信度は10段階中2でしたが、「今決めないと間に合わない」と声を出しました。聞き取り結果を「必要性は認めているが、今の形では使いたくない」という構造に整理し、1名ずつ意見を聞いて回りました。結果、12時に方針転換を決定。7時間で作り直し、120名中2位を獲得しました。この経験から、不確実性の高い状況でも最初の一手を打つこと、他者の意見を構造に落とし込んで合意を形成することの重要性を学びました。
+      </div>
+      <div class="es-note">
+        <strong>⚠ そのまま使わず、口に出して読んで直すこと。</strong> 自分の言葉になっていない箇所は面接で詰まります。
+      </div>
+    </div>
+
+    <div class="es-draft">
+      <h4>30秒口頭版（面接冒頭・自己紹介想定）</h4>
+      <div class="oral-structure">
+        <ol>
+          <li>Startup Weekend 54時間、120名中2位</li>
+          <li>発表19時間前、前提が崩れて全員が黙った</li>
+          <li>自信度は最低だったが、最初に声を出した</li>
+          <li>顧客の声を構造化し、7時間で作り直した</li>
+          <li>不安でも動ける、が強み</li>
+        </ol>
+      </div>
+      <div class="es-note">
+        文章で丸暗記せず、骨子だけ頭に入れて自分の言葉で話すこと。
+      </div>
+    </div>
+
+  </section>
+
+  <!-- やりがちな失敗 -->
+  <section class="mistakes-section">
+    <h2 class="section-title">やりがちな失敗</h2>
+    <p class="section-subtitle">このネタを語るときに避けるべき表現と、推奨される表現</p>
+
+    <div class="mistakes-grid">
+
+      <div class="mistakes-ng">
+        <h4>× 避けるべき</h4>
+        <ul>
+          <li>「2位でした」を先に言う</li>
+          <li>睡眠時間の短さを実績のように語る</li>
+          <li>「チームで協力して」「一丸となって」で始める</li>
+          <li>「熱意」「気合」「やり切った」を根拠として使う</li>
+          <li>「学びました」「成長しました」で終わる</li>
+        </ul>
+      </div>
+
+      <div class="mistakes-ok">
+        <h4>○ 推奨される</h4>
+        <ul>
+          <li>自信が最低だったことを隠さない</li>
+          <li>自分の案を捨てた話は、聞かれる前に自分から出す</li>
+          <li>数字と時刻で具体的に語る</li>
+          <li>他メンバーの貢献を明示する</li>
+          <li>判断理由を説明できる状態にしておく</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 想定される深掘り質問 -->
+  <section class="questions-section">
+    <h2 class="section-title">想定される深掘り質問（答えにくい順）</h2>
+    <p class="section-subtitle">各質問に「どう答えるか」ではなく「どこで落ちるか」を把握しておく</p>
+
+    <div class="questions-list">
+
+      <div class="question-item">
+        <div class="question-text">54時間だから頑張れたのでは。半年、1年続けた経験はありますか</div>
+        <div class="question-note">
+          <strong>⚠ このネタ単体では絶対に返せない。</strong> 短期集中型イベントを題材にする構造的な弱点。別の長期的な取り組み（研究、インターン、サークル運営など）を必ず用意しておくこと。
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="question-text">それ、あなた一人の成果ですか。他のメンバーは何をしていたんですか</div>
+        <div class="question-note">
+          発表資料20枚のうち本人作成は8枚。残り12枚は他メンバー分担。顧客聞き取りも8名中、本人担当は3名。方針転換の起案は2回あり、うち1回は他メンバー。この構造を明示できれば返せる。
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="question-text">なぜ最初に発言できたんですか。勇気があった、では答えになりません</div>
+        <div class="question-note">
+          「自信があったから」ではなく「発言しないリスクのほうが大きいと判断したから」。残り時間から逆算して、12時までに決めないと完成しないという時間制約が行動を促した。この判断プロセスを説明できるか。
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="question-text">自分の案を降ろした話、単に自信がなかっただけでは</div>
+        <div class="question-note">
+          「自信がなかった」は事実として認めてよい。重要なのは、自信がない状態でも「実装時間が足りない」という客観的な理由を説明して合意を取ったこと。感情ではなく事実で判断を変えた、という構造。
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="question-text">1位ではない。何が足りなかったと思いますか</div>
+        <div class="question-note">
+          審査基準は「ビジネスモデルの実現可能性」。1位チームは既に顧客候補10社にアポを取っていた。本チームは顧客ヒアリングに時間を使いすぎて、実現可能性の検証が不足。この事実を把握しているか。
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="question-text">その判断、今でも正しかったと思いますか</div>
+        <div class="question-note">
+          方針転換の判断は正しかったが、金曜夜の時点で顧客ヒアリングを先にすべきだった。この反省を言語化できているか。
+        </div>
+      </div>
+
+      <div class="question-item">
+        <div class="question-text">弊社の仕事で、同じ場面はどこだと思いますか</div>
+        <div class="question-note">
+          企業研究が必要。その企業の新規事業部門、プロジェクト型業務、顧客折衝の場面などに引きつけて語る。具体的な部署名・事業名を出せるか。
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- まだ埋まっていないところ -->
+  <section class="incomplete-section">
+    <div class="incomplete-list">
+      <h4>まだ埋まっていないところ</h4>
+      <p class="section-subtitle" style="color: #8b4049; margin-bottom: 16px;">
+        綺麗に埋めると、面接で1問掘られた瞬間に全部崩れます。空欄は空欄として残し、確認してください。
+      </p>
+
+      <ul>
+        <li>審査基準の詳細（ビジネスモデル、プレゼン、チームワークの配点比率）→ 運営に確認</li>
+        <li>1位チームの取り組み内容（顧客候補10社の件）→ チームメンバーBさんに聞く</li>
+        <li>方針転換後の7時間、誰が何を作ったか → 作業分担の記録を確認（Slackログ、Notion等）</li>
+        <li>顧客8名の属性（年齢、職業、利用シーン）→ 聞き取りメモを見返す</li>
+        <li>40分の沈黙の間、他メンバーは何を考えていたか → チームメンバーに直接聞く（質問文：「土曜10:40〜11:20、あなたは何を考えていましたか?」）</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
