@@ -91,9 +91,10 @@ Item 4:
 - Badge: "環境次第" (yellow)
 
 Item 5:
-- Label: "5. 内容"
+- Label: "5. 内容（思考ログ含む）"
 - Detail: "文字起こし / 範囲未確定"
 - Badge: "環境次第" (yellow)
+- Note: "本人の思考プロセスを記録"
 
 Bottom section (light yellow/beige background, smaller text):
 Title: "未確定事項"
@@ -156,12 +157,14 @@ Tag: "A面" (navy badge)
 Mock document preview with these items (compact list):
 • 見出し（順位ではなく行動で記述）
 • 曲線（自信度の推移 金19:00〜日17:00）
-• 状況→課題→行動→結果
+• 状況→課題→行動→結果（全て同じ灰色枠）
+• 考え方の特徴（判断の軸2〜3個）
+• 思考ログ（瞬間の判断理由2〜3個）
 • 強み3つ（根拠必須）
 • 実数4つ（睡眠時間除外）
 • 引用（本人+メンバー）
 
-Note: "事実と解釈を分離"
+Note: "事実・思考・考え方を分けて記録 / AIの補完禁止"
 
 Section 2 - B面（本人用・提出しない）:
 Tag: "B面" (orange/brown badge)

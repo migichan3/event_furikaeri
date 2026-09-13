@@ -19,17 +19,17 @@
     }
 
     :root {
-      /* 色彩 */
+      /* 色彩：モノトーン */
       --text-primary: #1a1a1a;
       --text-secondary: #666666;
       --text-tertiary: #999999;
-      --bg-page: #fafaf8;
+      --bg-page: #fafafa;
       --bg-card: #ffffff;
-      --border-light: #e5e5e5;
-      --main-color: #1e3a5f;
-      --accent-color: #8b4049;
-      --accent-light: #e8dfe0;
-      --valley-highlight: rgba(139, 64, 73, 0.08);
+      --border-light: #e0e0e0;
+      --main-color: #2a2a2a;
+      --accent-color: #4a4a4a;
+      --accent-light: #f5f5f5;
+      --valley-highlight: rgba(0, 0, 0, 0.04);
 
       /* タイポグラフィ */
       --font-family: "Noto Sans JP", sans-serif;
@@ -84,7 +84,7 @@
     .header {
       margin-bottom: var(--spacing-xl);
       padding-bottom: var(--spacing-lg);
-      border-bottom: 2px solid var(--main-color);
+      border-bottom: 2px solid var(--border-light);
     }
 
     .header-top {
@@ -98,7 +98,7 @@
       font-size: var(--font-size-h1);
       font-weight: 700;
       line-height: var(--line-height-heading);
-      color: var(--main-color);
+      color: var(--text-primary);
       margin-bottom: var(--spacing-xs);
     }
 
@@ -134,7 +134,7 @@
     .section-title {
       font-size: var(--font-size-h2);
       font-weight: 700;
-      color: var(--main-color);
+      color: var(--text-primary);
       margin-bottom: var(--spacing-md);
       line-height: var(--line-height-heading);
     }
@@ -165,7 +165,7 @@
       margin-top: var(--spacing-sm);
       padding: var(--spacing-sm);
       background: var(--valley-highlight);
-      border-left: 3px solid var(--accent-color);
+      border: 1px solid var(--border-light);
       border-radius: var(--radius);
     }
 
@@ -178,8 +178,8 @@
     }
 
     .star-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
+      background: #f5f5f5;
+      border: 1px solid #d0d0d0;
       border-radius: var(--radius);
       padding: var(--spacing-md);
     }
@@ -187,18 +187,9 @@
     .star-item h3 {
       font-size: var(--font-size-h3);
       font-weight: 700;
-      color: var(--main-color);
+      color: var(--text-primary);
       margin-bottom: var(--spacing-sm);
       line-height: var(--line-height-heading);
-    }
-
-    .star-item.action {
-      background: var(--accent-light);
-      border-color: var(--accent-color);
-    }
-
-    .star-item.action h3 {
-      color: var(--accent-color);
     }
 
     /* === 強み（3カラム） === */
@@ -229,7 +220,6 @@
       color: var(--text-secondary);
       margin-bottom: var(--spacing-sm);
       padding-left: var(--spacing-md);
-      border-left: 2px solid var(--accent-color);
     }
 
     .strength-evidence li {
@@ -242,7 +232,7 @@
       content: "•";
       position: absolute;
       left: -12px;
-      color: var(--accent-color);
+      color: var(--text-secondary);
     }
 
     .strength-application {
@@ -253,19 +243,99 @@
       border-radius: 4px;
     }
 
+    /* === あなたの思考、動き方 === */
+    .thinking-section {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .thinking-patterns {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .pattern-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .pattern-item h4 {
+      font-size: var(--font-size-h3);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+      line-height: var(--line-height-heading);
+    }
+
+    .pattern-examples {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+    }
+
+    .pattern-examples li {
+      margin-bottom: var(--spacing-xs);
+      list-style: none;
+      position: relative;
+      padding-left: var(--spacing-md);
+    }
+
+    .pattern-examples li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--text-secondary);
+    }
+
+    .thinking-logs {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .log-item {
+      background: var(--accent-light);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .log-timestamp {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xs);
+      font-weight: 700;
+    }
+
+    .log-quote {
+      font-size: var(--font-size-body);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
     /* === 実数・引用 === */
     .metrics-quotes {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--spacing-lg);
+      display: block;
+    }
+
+    .metrics,
+    .quotes {
+      margin-bottom: var(--spacing-xl);
     }
 
     .metrics h3,
     .quotes h3 {
       font-size: var(--font-size-h3);
       font-weight: 700;
-      color: var(--main-color);
+      color: var(--text-primary);
       margin-bottom: var(--spacing-md);
+    }
+
+    .metrics .section-subtitle,
+    .quotes .section-subtitle {
+      font-size: var(--font-size-small);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-md);
+      margin-top: calc(var(--spacing-xs) * -1);
     }
 
     .metric-item {
@@ -281,7 +351,7 @@
     .metric-value {
       font-size: 28px;
       font-weight: 700;
-      color: var(--accent-color);
+      color: var(--text-primary);
       line-height: 1.2;
     }
 
@@ -293,7 +363,7 @@
 
     .quote-block {
       background: var(--accent-light);
-      border-left: 4px solid var(--accent-color);
+      border: 1px solid var(--border-light);
       padding: var(--spacing-md);
       margin-bottom: var(--spacing-md);
       border-radius: var(--radius);
@@ -313,56 +383,6 @@
     }
 
     /* === B面固有スタイル === */
-    .es-draft {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius);
-      padding: var(--spacing-lg);
-      margin-bottom: var(--spacing-lg);
-    }
-
-    .es-draft h4 {
-      font-size: var(--font-size-h3);
-      font-weight: 700;
-      color: var(--main-color);
-      margin-bottom: var(--spacing-sm);
-    }
-
-    .char-count {
-      font-size: var(--font-size-small);
-      color: var(--text-tertiary);
-      text-align: right;
-      margin-bottom: var(--spacing-xs);
-    }
-
-    .es-text {
-      line-height: 1.8;
-      margin-bottom: var(--spacing-md);
-    }
-
-    .es-note {
-      font-size: var(--font-size-small);
-      color: var(--text-secondary);
-      padding: var(--spacing-sm);
-      background: var(--valley-highlight);
-      border-radius: 4px;
-    }
-
-    .oral-structure {
-      background: var(--bg-page);
-      padding: var(--spacing-md);
-      border-radius: var(--radius);
-      font-size: var(--font-size-small);
-    }
-
-    .oral-structure ol {
-      margin-left: var(--spacing-lg);
-    }
-
-    .oral-structure li {
-      margin-bottom: var(--spacing-xs);
-    }
-
     .mistakes-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -448,7 +468,7 @@
 
     .question-text::before {
       content: "Q" counter(question-counter) ". ";
-      color: var(--accent-color);
+      color: var(--text-secondary);
     }
 
     .question-note {
@@ -461,8 +481,8 @@
     }
 
     .incomplete-list {
-      background: var(--valley-highlight);
-      border: 1px solid var(--accent-color);
+      background: var(--accent-light);
+      border: 1px solid var(--border-light);
       border-radius: var(--radius);
       padding: var(--spacing-lg);
     }
@@ -470,7 +490,7 @@
     .incomplete-list h4 {
       font-size: var(--font-size-h3);
       font-weight: 700;
-      color: var(--accent-color);
+      color: var(--text-primary);
       margin-bottom: var(--spacing-md);
     }
 
@@ -486,10 +506,10 @@
     }
 
     .incomplete-list li::before {
-      content: "⚠";
+      content: "□";
       position: absolute;
       left: 0;
-      color: var(--accent-color);
+      color: var(--text-secondary);
     }
 
     /* === 印刷用CSS === */
@@ -583,7 +603,7 @@
         <text x="700" y="260" font-size="11" fill="#666" text-anchor="middle">日12:00</text>
 
         <!-- 谷の強調帯（土10:00〜土17:00） -->
-        <rect x="350" y="20" width="180" height="220" fill="rgba(139, 64, 73, 0.08)" rx="4"/>
+        <rect x="350" y="20" width="180" height="220" fill="rgba(0, 0, 0, 0.04)" rx="4"/>
 
         <!-- データ点の定義 -->
         <!-- 金19:00 (x:100, 自信度7), 金23:00 (x:170, 6), 土03:00 (x:240, 5), 土06:00 (x:280, 4),
@@ -594,29 +614,29 @@
         <polyline
           points="100,86 170,108 240,130 280,152 350,196 440,196 530,152 600,108 670,86 710,64 760,42"
           fill="none"
-          stroke="#1e3a5f"
+          stroke="#2a2a2a"
           stroke-width="3"
           stroke-linecap="round"
           stroke-linejoin="round"/>
 
         <!-- データポイント -->
-        <circle cx="100" cy="86" r="5" fill="#1e3a5f"/>
-        <circle cx="170" cy="108" r="5" fill="#1e3a5f"/>
-        <circle cx="240" cy="130" r="5" fill="#1e3a5f"/>
-        <circle cx="280" cy="152" r="5" fill="#1e3a5f"/>
+        <circle cx="100" cy="86" r="5" fill="#2a2a2a"/>
+        <circle cx="170" cy="108" r="5" fill="#2a2a2a"/>
+        <circle cx="240" cy="130" r="5" fill="#2a2a2a"/>
+        <circle cx="280" cy="152" r="5" fill="#2a2a2a"/>
 
         <!-- 谷のポイント（強調） -->
-        <circle cx="350" cy="196" r="7" fill="#8b4049"/>
-        <circle cx="440" cy="196" r="7" fill="#8b4049"/>
+        <circle cx="350" cy="196" r="7" fill="#4a4a4a"/>
+        <circle cx="440" cy="196" r="7" fill="#4a4a4a"/>
 
-        <circle cx="530" cy="152" r="5" fill="#1e3a5f"/>
-        <circle cx="600" cy="108" r="5" fill="#1e3a5f"/>
-        <circle cx="670" cy="86" r="5" fill="#1e3a5f"/>
-        <circle cx="710" cy="64" r="5" fill="#1e3a5f"/>
-        <circle cx="760" cy="42" r="5" fill="#1e3a5f"/>
+        <circle cx="530" cy="152" r="5" fill="#2a2a2a"/>
+        <circle cx="600" cy="108" r="5" fill="#2a2a2a"/>
+        <circle cx="670" cy="86" r="5" fill="#2a2a2a"/>
+        <circle cx="710" cy="64" r="5" fill="#2a2a2a"/>
+        <circle cx="760" cy="42" r="5" fill="#2a2a2a"/>
 
         <!-- 谷の注釈 -->
-        <text x="440" y="15" font-size="13" fill="#8b4049" font-weight="700" text-anchor="middle">
+        <text x="440" y="15" font-size="13" fill="#4a4a4a" font-weight="700" text-anchor="middle">
           発表19時間前、前提が崩れた
         </text>
       </svg>
@@ -639,7 +659,7 @@
         <p>約40分間、全員の手が止まった。チーム5名のうち3名が「このまま出すしかない」と発言。残り時間から逆算すると、12時までに方針を決めないと完成しない。</p>
       </div>
 
-      <div class="star-item action">
+      <div class="star-item">
         <h3>行動</h3>
         <p>聞き取り結果を3つの理由に分解し、「必要性は認めているが、今の形では使いたくない」という構造を可視化。その上で「方針を変えるなら今」と発言し、1名ずつ意見を聞いて回った。</p>
       </div>
@@ -692,12 +712,53 @@
     </div>
   </section>
 
+  <!-- あなたの思考、動き方 -->
+  <section class="thinking-section">
+    <h2 class="section-title">あなたの思考、動き方</h2>
+
+    <div class="thinking-patterns">
+      <h3 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">判断の軸</h3>
+
+      <div class="pattern-item">
+        <h4>時間制約から逆算して判断する</h4>
+        <ul class="pattern-examples">
+          <li>土曜12:00までに方針を決めないと完成しないと計算して、沈黙を破った</li>
+          <li>実装時間が足りないという理由で、自分の案を取り下げた</li>
+          <li>残り時間を全員に見せて、優先順位を決め直した</li>
+        </ul>
+      </div>
+
+      <div class="pattern-item">
+        <h4>対立を構造で整理してから決める</h4>
+        <ul class="pattern-examples">
+          <li>顧客の反応を「必要性○ / 今の形×」という軸で整理した</li>
+          <li>チーム内の意見の対立を「時間制約 vs 品質」の構造で可視化した</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="thinking-logs">
+      <h3 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">その瞬間の言葉</h3>
+
+      <div class="log-item">
+        <div class="log-timestamp">土曜 12:15（沈黙を破った直後）</div>
+        <p class="log-quote">「正しいか分からないけど、今決めないと間に合わない。一人ずつ意見を聞いていい？」</p>
+      </div>
+
+      <div class="log-item">
+        <div class="log-timestamp">土曜 14:30（自分の案を取り下げた時）</div>
+        <p class="log-quote">「この機能、実装に7時間かかる。残り5時間だから、諦める。優先順位を変えよう」</p>
+      </div>
+    </div>
+  </section>
+
   <!-- 実数・引用 -->
   <section class="metrics-quotes-section">
     <div class="metrics-quotes">
 
       <div class="metrics">
         <h3>実数</h3>
+        <p class="section-subtitle">54時間で記録された数値（算出根拠を説明できるもののみ）</p>
 
         <div class="metric-item">
           <div class="metric-value">8名</div>
@@ -723,6 +784,7 @@
 
       <div class="quotes">
         <h3>引用</h3>
+        <p class="section-subtitle">本人の言葉とチームメンバーからの評価</p>
 
         <div class="quote-block">
           <p class="quote-text">「心臓はバクバクしていました。でも、ここで誰も喋らなかったら本当に終わると思って」</p>
@@ -745,47 +807,14 @@
 <div class="page page-b">
 
   <header class="header">
-    <h1>面接準備シート（提出しないでください）</h1>
-    <p class="section-subtitle">このページは本人が面接前に見返すためのものです。企業には提出しません。</p>
+    <h1>振り返りメモ</h1>
+    <p class="section-subtitle">友達と話す時や、面談で自己アピールしたい時に使えるメモ。</p>
   </header>
-
-  <!-- ESドラフト -->
-  <section class="es-section">
-    <h2 class="section-title">ESドラフト</h2>
-
-    <div class="es-draft">
-      <h4>400字版（ガクチカ想定）</h4>
-      <div class="char-count">391字</div>
-      <div class="es-text">
-        Startup Weekend（54時間の新規事業立案イベント）で、発表19時間前に前提が崩れる経験をしました。土曜10:40、ターゲット顧客8名中7名が「使いたくない」と回答。チーム5名全員が黙り込み、約40分間手が止まりました。この時、自信度は10段階中2でしたが、「今決めないと間に合わない」と声を出しました。聞き取り結果を「必要性は認めているが、今の形では使いたくない」という構造に整理し、1名ずつ意見を聞いて回りました。結果、12時に方針転換を決定。7時間で作り直し、120名中2位を獲得しました。この経験から、不確実性の高い状況でも最初の一手を打つこと、他者の意見を構造に落とし込んで合意を形成することの重要性を学びました。
-      </div>
-      <div class="es-note">
-        <strong>⚠ そのまま使わず、口に出して読んで直すこと。</strong> 自分の言葉になっていない箇所は面接で詰まります。
-      </div>
-    </div>
-
-    <div class="es-draft">
-      <h4>30秒口頭版（面接冒頭・自己紹介想定）</h4>
-      <div class="oral-structure">
-        <ol>
-          <li>Startup Weekend 54時間、120名中2位</li>
-          <li>発表19時間前、前提が崩れて全員が黙った</li>
-          <li>自信度は最低だったが、最初に声を出した</li>
-          <li>顧客の声を構造化し、7時間で作り直した</li>
-          <li>不安でも動ける、が強み</li>
-        </ol>
-      </div>
-      <div class="es-note">
-        文章で丸暗記せず、骨子だけ頭に入れて自分の言葉で話すこと。
-      </div>
-    </div>
-
-  </section>
 
   <!-- やりがちな失敗 -->
   <section class="mistakes-section">
-    <h2 class="section-title">やりがちな失敗</h2>
-    <p class="section-subtitle">このネタを語るときに避けるべき表現と、推奨される表現</p>
+    <h2 class="section-title">話す時に気をつけること</h2>
+    <p class="section-subtitle">このエピソードを語る時、こう言うと伝わりにくい／伝わりやすい</p>
 
     <div class="mistakes-grid">
 
@@ -816,55 +845,55 @@
 
   <!-- 想定される深掘り質問 -->
   <section class="questions-section">
-    <h2 class="section-title">想定される深掘り質問（答えにくい順）</h2>
-    <p class="section-subtitle">各質問に「どう答えるか」ではなく「どこで落ちるか」を把握しておく</p>
+    <h2 class="section-title">聞かれそうなこと</h2>
+    <p class="section-subtitle">友達や先輩に話したら、こう突っ込まれるかも（答えにくい順）</p>
 
     <div class="questions-list">
 
       <div class="question-item">
-        <div class="question-text">54時間だから頑張れたのでは。半年、1年続けた経験はありますか</div>
+        <div class="question-text">54時間だから頑張れたのでは。半年、1年続けた経験はある？</div>
         <div class="question-note">
-          <strong>⚠ このネタ単体では絶対に返せない。</strong> 短期集中型イベントを題材にする構造的な弱点。別の長期的な取り組み（研究、インターン、サークル運営など）を必ず用意しておくこと。
+          <strong>※ このエピソード単体では答えられない。</strong> 短期集中型イベントの構造的な弱点。別の長期的な取り組み（研究、インターン、サークル運営など）を用意しておく。
         </div>
       </div>
 
       <div class="question-item">
-        <div class="question-text">それ、あなた一人の成果ですか。他のメンバーは何をしていたんですか</div>
+        <div class="question-text">それ、あなた一人の成果？他のメンバーは何してたの？</div>
         <div class="question-note">
-          発表資料20枚のうち本人作成は8枚。残り12枚は他メンバー分担。顧客聞き取りも8名中、本人担当は3名。方針転換の起案は2回あり、うち1回は他メンバー。この構造を明示できれば返せる。
+          発表資料20枚のうち本人作成は8枚。残り12枚は他メンバー分担。顧客聞き取りも8名中、本人担当は3名。方針転換の起案は2回あり、うち1回は他メンバー。この構造を説明できれば答えられる。
         </div>
       </div>
 
       <div class="question-item">
-        <div class="question-text">なぜ最初に発言できたんですか。勇気があった、では答えになりません</div>
+        <div class="question-text">なぜ最初に発言できたの？勇気があったから、では答えにならない</div>
         <div class="question-note">
           「自信があったから」ではなく「発言しないリスクのほうが大きいと判断したから」。残り時間から逆算して、12時までに決めないと完成しないという時間制約が行動を促した。この判断プロセスを説明できるか。
         </div>
       </div>
 
       <div class="question-item">
-        <div class="question-text">自分の案を降ろした話、単に自信がなかっただけでは</div>
+        <div class="question-text">自分の案を降ろした話、単に自信がなかっただけでは？</div>
         <div class="question-note">
-          「自信がなかった」は事実として認めてよい。重要なのは、自信がない状態でも「実装時間が足りない」という客観的な理由を説明して合意を取ったこと。感情ではなく事実で判断を変えた、という構造。
+          「自信がなかった」は事実として認めてOK。重要なのは、自信がない状態でも「実装時間が足りない」という客観的な理由を説明して合意を取ったこと。感情ではなく事実で判断を変えた、という構造。
         </div>
       </div>
 
       <div class="question-item">
-        <div class="question-text">1位ではない。何が足りなかったと思いますか</div>
+        <div class="question-text">1位じゃない。何が足りなかったと思う？</div>
         <div class="question-note">
           審査基準は「ビジネスモデルの実現可能性」。1位チームは既に顧客候補10社にアポを取っていた。本チームは顧客ヒアリングに時間を使いすぎて、実現可能性の検証が不足。この事実を把握しているか。
         </div>
       </div>
 
       <div class="question-item">
-        <div class="question-text">その判断、今でも正しかったと思いますか</div>
+        <div class="question-text">その判断、今でも正しかったと思う？</div>
         <div class="question-note">
           方針転換の判断は正しかったが、金曜夜の時点で顧客ヒアリングを先にすべきだった。この反省を言語化できているか。
         </div>
       </div>
 
       <div class="question-item">
-        <div class="question-text">弊社の仕事で、同じ場面はどこだと思いますか</div>
+        <div class="question-text">（企業の）仕事で、同じ場面はどこにあると思う？</div>
         <div class="question-note">
           企業研究が必要。その企業の新規事業部門、プロジェクト型業務、顧客折衝の場面などに引きつけて語る。具体的な部署名・事業名を出せるか。
         </div>
@@ -873,20 +902,20 @@
     </div>
   </section>
 
-  <!-- まだ埋まっていないところ -->
+  <!-- 改めて振り返ってみよう -->
   <section class="incomplete-section">
     <div class="incomplete-list">
-      <h4>まだ埋まっていないところ</h4>
-      <p class="section-subtitle" style="color: #8b4049; margin-bottom: 16px;">
-        綺麗に埋めると、面接で1問掘られた瞬間に全部崩れます。空欄は空欄として残し、確認してください。
+      <h4>改めて自分で振り返ってみよう</h4>
+      <p class="section-subtitle" style="color: #666666; margin-bottom: 16px;">
+        記憶が曖昧なところ、確認したら話せる内容が増えそうなこと。
       </p>
 
       <ul>
-        <li>審査基準の詳細（ビジネスモデル、プレゼン、チームワークの配点比率）→ 運営に確認</li>
-        <li>1位チームの取り組み内容（顧客候補10社の件）→ チームメンバーBさんに聞く</li>
-        <li>方針転換後の7時間、誰が何を作ったか → 作業分担の記録を確認（Slackログ、Notion等）</li>
-        <li>顧客8名の属性（年齢、職業、利用シーン）→ 聞き取りメモを見返す</li>
-        <li>40分の沈黙の間、他メンバーは何を考えていたか → チームメンバーに直接聞く（質問文：「土曜10:40〜11:20、あなたは何を考えていましたか?」）</li>
+        <li>審査基準の詳細（ビジネスモデル、プレゼン、チームワークの配点比率）</li>
+        <li>1位チームは何をしていたか（顧客候補10社にアポを取った件）</li>
+        <li>方針転換後の7時間、誰が何を作ったか（Slackログ、Notion等を見返す）</li>
+        <li>顧客8名はどんな人だったか（年齢、職業、利用シーン）</li>
+        <li>40分の沈黙の間、他メンバーは何を考えていたか（直接聞いてみる）</li>
       </ul>
     </div>
   </section>
